@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
+import BottomNav from "@/components/layout/BottomNav";
 import { getSessionUser } from "@/lib/session";
 
 // Airbnb Cereal VF is a licensed, non-public font; Inter is the documented
@@ -32,8 +33,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         {sessionUser && <Header />}
         <div className="flex flex-1 min-h-0">
           {sessionUser && <Sidebar />}
-          <main className="flex-1 p-4 overflow-y-auto sm:p-8">{children}</main>
+          <main className="flex-1 overflow-y-auto p-4 pb-20 sm:p-8 sm:pb-8">{children}</main>
         </div>
+        {sessionUser && <BottomNav />}
       </body>
     </html>
   );

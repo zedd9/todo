@@ -14,7 +14,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-56 shrink-0 border-r border-hairline bg-canvas p-4">
+    <aside className="hidden w-56 shrink-0 border-r border-hairline bg-canvas p-4 sm:block">
       <nav className="flex flex-col gap-1">
         {NAV_LINKS.map((link) => {
           const isActive =
