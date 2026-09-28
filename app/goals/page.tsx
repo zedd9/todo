@@ -48,20 +48,18 @@ export default function GoalsPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold">1년 목표</h1>
+        <h1 className="text-display-sm text-ink">1년 목표</h1>
         <button
           type="button"
           onClick={openCreateModal}
-          className="rounded bg-foreground px-3 py-2 text-sm font-medium text-background"
+          className="rounded-sm bg-primary px-3 py-2 text-button-sm text-on-primary hover:bg-primary-active"
         >
           새 목표
         </button>
       </div>
 
       {goals.length === 0 ? (
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          아직 등록된 목표가 없습니다.
-        </p>
+        <p className="text-body-sm text-muted">아직 등록된 목표가 없습니다.</p>
       ) : (
         <div className="flex flex-col gap-3">
           {goals.map((goal) => (

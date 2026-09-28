@@ -1,8 +1,8 @@
 export default function LandingPage() {
   return (
-    <div className="flex h-full min-h-[32rem] items-center justify-center">
-      <div className="flex w-full max-w-sm flex-col items-center gap-6 rounded-2xl border border-black/10 p-10 text-center dark:border-white/10">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl">
+    <div className="flex h-full min-h-[32rem] items-center justify-center bg-canvas">
+      <div className="flex w-full max-w-sm flex-col items-center gap-6 rounded-md border border-hairline p-10 text-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-surface-soft text-primary">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -20,20 +20,18 @@ export default function LandingPage() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-semibold">할일 + 계획 관리</h1>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            단기 실행과 장기 목표를 한 곳에서
-          </p>
+          <h1 className="text-display-xl text-ink">할일 + 계획 관리</h1>
+          <p className="text-body-sm text-muted">단기 실행과 장기 목표를 한 곳에서</p>
         </div>
 
         <a
           href="/auth/github"
-          className="w-full rounded-2xl bg-foreground px-4 py-3 text-sm font-medium text-background"
+          className="w-full rounded-full bg-primary px-4 py-3 text-button-md text-on-primary hover:bg-primary-active"
         >
           GitHub로 로그인
         </a>
 
-        <p className="text-xs text-zinc-500 dark:text-zinc-500">
+        <p className="text-caption-sm text-muted-soft">
           로그인 시 GitHub 사용자명과 프로필 사진을 저장합니다.
         </p>
       </div>

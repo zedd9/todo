@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 import { getSessionUser } from "@/lib/session";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Airbnb Cereal VF is a licensed, non-public font; Inter is the documented
+// open-source substitute for it.
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -30,15 +27,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const sessionUser = await getSessionUser(request);
 
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-canvas text-ink">
         {sessionUser && <Header />}
         <div className="flex flex-1 min-h-0">
           {sessionUser && <Sidebar />}
-          <main className="flex-1 p-4 overflow-y-auto">{children}</main>
+          <main className="flex-1 p-4 overflow-y-auto sm:p-8">{children}</main>
         </div>
       </body>
     </html>

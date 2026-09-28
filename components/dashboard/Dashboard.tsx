@@ -57,19 +57,19 @@ export default function Dashboard() {
   };
 
   if (loading) {
-    return <p className="text-sm text-zinc-600 dark:text-zinc-400">불러오는 중...</p>;
+    return <p className="text-body-sm text-muted">불러오는 중...</p>;
   }
 
   if (!currentPlan) {
     return (
-      <div className="flex flex-col items-start gap-3 rounded border border-black/10 p-6 dark:border-white/10">
-        <h1 className="text-xl font-semibold">이번 주 계획이 없습니다</h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      <div className="flex flex-col items-start gap-3 rounded-md border border-hairline p-6">
+        <h1 className="text-display-sm text-ink">이번 주 계획이 없습니다</h1>
+        <p className="text-body-sm text-muted">
           이번 주 주간 계획을 아직 만들지 않았어요. 먼저 주간 계획을 생성해주세요.
         </p>
         <Link
           href="/weekly"
-          className="rounded bg-foreground px-3 py-2 text-sm font-medium text-background"
+          className="rounded-sm bg-primary px-3 py-2 text-button-sm text-on-primary hover:bg-primary-active"
         >
           주간 계획 만들기
         </Link>
@@ -88,16 +88,16 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold">
+        <h1 className="text-display-xl text-ink">
           {new Date(currentPlan.weekStart).toLocaleDateString("ko-KR")} 주 대시보드
         </h1>
-        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">이번 주 현황 한눈에 보기</p>
+        <p className="mt-1 text-body-sm text-muted">이번 주 현황 한눈에 보기</p>
       </div>
 
       <div className="flex flex-col gap-2">
-        <h2 className="text-sm font-semibold">주간 목표</h2>
+        <h2 className="text-title-sm text-ink">주간 목표</h2>
         {currentPlan.goals.length === 0 ? (
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">등록된 목표가 없습니다.</p>
+          <p className="text-body-sm text-muted">등록된 목표가 없습니다.</p>
         ) : (
           currentPlan.goals.map((goal, index) => (
             <WeeklyGoalItem key={index} goal={goal} index={index} onToggle={handleToggle} />
@@ -107,27 +107,27 @@ export default function Dashboard() {
 
       {currentPlan.memo && (
         <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-semibold">메모</h2>
-          <p className="rounded border border-black/10 px-3 py-2 text-sm text-zinc-600 dark:border-white/10 dark:text-zinc-400">
+          <h2 className="text-title-sm text-ink">메모</h2>
+          <p className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-body">
             {currentPlan.memo}
           </p>
         </div>
       )}
 
       <div className="flex flex-col gap-2">
-        <h2 className="text-sm font-semibold">할일 현황</h2>
+        <h2 className="text-title-sm text-ink">할일 현황</h2>
         <div className="grid grid-cols-3 gap-3">
-          <div className="rounded border border-black/10 px-3 py-2 text-center dark:border-white/10">
-            <p className="text-2xl font-semibold">{statusCounts.todo}</p>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400">할일</p>
+          <div className="rounded-md border border-hairline px-3 py-2 text-center">
+            <p className="text-display-md text-ink">{statusCounts.todo}</p>
+            <p className="text-caption-sm text-muted">할일</p>
           </div>
-          <div className="rounded border border-black/10 px-3 py-2 text-center dark:border-white/10">
-            <p className="text-2xl font-semibold">{statusCounts.doing}</p>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400">진행중</p>
+          <div className="rounded-md border border-hairline px-3 py-2 text-center">
+            <p className="text-display-md text-ink">{statusCounts.doing}</p>
+            <p className="text-caption-sm text-muted">진행중</p>
           </div>
-          <div className="rounded border border-black/10 px-3 py-2 text-center dark:border-white/10">
-            <p className="text-2xl font-semibold">{statusCounts.done}</p>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400">완료</p>
+          <div className="rounded-md border border-hairline px-3 py-2 text-center">
+            <p className="text-display-md text-primary">{statusCounts.done}</p>
+            <p className="text-caption-sm text-muted">완료</p>
           </div>
         </div>
       </div>
@@ -140,9 +140,9 @@ export default function Dashboard() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h2 className="text-sm font-semibold">목표별 이번 주 할일</h2>
+        <h2 className="text-title-sm text-ink">목표별 이번 주 할일</h2>
         {goals.length === 0 ? (
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">등록된 1년 목표가 없습니다.</p>
+          <p className="text-body-sm text-muted">등록된 1년 목표가 없습니다.</p>
         ) : (
           <ul className="flex flex-col gap-1">
             {goals.map((goal) => {
@@ -150,10 +150,10 @@ export default function Dashboard() {
               return (
                 <li
                   key={goal._id}
-                  className="flex items-center justify-between rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10"
+                  className="flex items-center justify-between rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink"
                 >
                   <span>{goal.title}</span>
-                  <span className="text-zinc-600 dark:text-zinc-400">{count}개</span>
+                  <span className="text-muted">{count}개</span>
                 </li>
               );
             })}

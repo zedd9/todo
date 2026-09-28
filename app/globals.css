@@ -1,26 +1,165 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surface */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f7f7f7;
+  --color-surface-strong: #f2f2f2;
+
+  /* Brand & accent (Rausch) */
+  --color-primary: #ff385c;
+  --color-primary-active: #e00b41;
+  --color-primary-disabled: #ffd1da;
+  --color-on-primary: #ffffff;
+
+  /* Hairlines & borders */
+  --color-hairline: #dddddd;
+  --color-hairline-soft: #ebebeb;
+  --color-stroke-strong: #c1c1c1;
+
+  /* Text */
+  --color-ink: #222222;
+  --color-body: #3f3f3f;
+  --color-muted: #6a6a6a;
+  --color-muted-soft: #929292;
+
+  /* Semantic */
+  --color-error: #c13515;
+  --color-error-hover: #b32505;
+  --color-legal-link: #428bff;
+
+  /* Scrim */
+  --color-scrim: rgba(0, 0, 0, 0.5);
+
+  /* Kept for compatibility with any leftover bg-background/text-foreground use */
+  --background: var(--color-canvas);
+  --foreground: var(--color-ink);
 }
 
 @theme inline {
+  --color-canvas: var(--color-canvas);
+  --color-surface-soft: var(--color-surface-soft);
+  --color-surface-strong: var(--color-surface-strong);
+  --color-primary: var(--color-primary);
+  --color-primary-active: var(--color-primary-active);
+  --color-primary-disabled: var(--color-primary-disabled);
+  --color-on-primary: var(--color-on-primary);
+  --color-hairline: var(--color-hairline);
+  --color-hairline-soft: var(--color-hairline-soft);
+  --color-stroke-strong: var(--color-stroke-strong);
+  --color-ink: var(--color-ink);
+  --color-body: var(--color-body);
+  --color-muted: var(--color-muted);
+  --color-muted-soft: var(--color-muted-soft);
+  --color-error: var(--color-error);
+  --color-error-hover: var(--color-error-hover);
+  --color-legal-link: var(--color-legal-link);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Airbnb shape language: soft, rounded corners everywhere */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-xl: 32px;
+
+  /* Single shadow tier used by the whole system */
+  --shadow-airbnb: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0,
+    rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Airbnb has no dark mode on the public web — canvas stays white. */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-inter), "Circular", -apple-system, system-ui, Roboto,
+    "Helvetica Neue", sans-serif;
+}
+
+@layer utilities {
+  .shadow-airbnb {
+    box-shadow: var(--shadow-airbnb);
+  }
+
+  /* Typography hierarchy tokens */
+  .text-display-xl {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.43;
+  }
+  .text-display-lg {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.44px;
+  }
+  .text-display-md {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.43;
+  }
+  .text-display-sm {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.18px;
+  }
+  .text-title-md {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .text-title-sm {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .text-body-md {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .text-body-sm {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.43;
+  }
+  .text-caption {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.29;
+  }
+  .text-caption-sm {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.23;
+  }
+  .text-badge {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.18;
+  }
+  .text-button-md {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .text-button-sm {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.29;
+  }
+  .text-nav-link {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .text-rating-display {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
 }

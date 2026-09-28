@@ -84,7 +84,7 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <label htmlFor="todo-title" className="text-sm font-medium">
+        <label htmlFor="todo-title" className="text-caption text-ink">
           제목
         </label>
         <input
@@ -92,33 +92,33 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          className="rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
           placeholder="할 일 제목"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="todo-description" className="text-sm font-medium">
+        <label htmlFor="todo-description" className="text-caption text-ink">
           설명
         </label>
         <textarea
           id="todo-description"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
-          className="min-h-20 rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="min-h-20 rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
           placeholder="설명 (선택)"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="todo-weekly" className="text-sm font-medium">
+        <label htmlFor="todo-weekly" className="text-caption text-ink">
           주간 계획
         </label>
         <select
           id="todo-weekly"
           value={weeklyPlanId}
           onChange={(event) => setWeeklyPlanId(event.target.value)}
-          className="rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
         >
           <option value="">연결 안 함</option>
           {weeklyPlans.map((plan) => (
@@ -129,16 +129,14 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
         </select>
         {planGoalTexts.length > 0 && (
           <div className="flex flex-col gap-1 pt-1">
-            <span className="text-xs text-zinc-500 dark:text-zinc-400">
-              이 주의 목표에서 제목 가져오기
-            </span>
+            <span className="text-caption-sm text-muted">이 주의 목표에서 제목 가져오기</span>
             <div className="flex flex-wrap gap-2">
               {planGoalTexts.map((text) => (
                 <button
                   key={text}
                   type="button"
                   onClick={() => setTitle(text)}
-                  className="rounded-full border border-black/10 px-3 py-1 text-xs hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/10"
+                  className="rounded-full border border-hairline px-3 py-1 text-caption-sm text-ink hover:bg-surface-soft"
                 >
                   {text}
                 </button>
@@ -149,14 +147,14 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="todo-priority" className="text-sm font-medium">
+        <label htmlFor="todo-priority" className="text-caption text-ink">
           우선순위
         </label>
         <select
           id="todo-priority"
           value={priority}
           onChange={(event) => setPriority(event.target.value as TodoItem["priority"] | "")}
-          className="rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
         >
           <option value="">설정 안 함</option>
           <option value="high">상</option>
@@ -166,7 +164,7 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="todo-due-date" className="text-sm font-medium">
+        <label htmlFor="todo-due-date" className="text-caption text-ink">
           마감일
         </label>
         <input
@@ -174,11 +172,11 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
           type="date"
           value={dueDate}
           onChange={(event) => setDueDate(event.target.value)}
-          className="rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
         />
       </div>
 
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && <p className="text-body-sm text-error">{error}</p>}
 
       <div className="flex items-center justify-between gap-2">
         {todo ? (
@@ -186,7 +184,7 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
             type="button"
             onClick={handleDelete}
             disabled={deleting}
-            className="rounded px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-500/10 disabled:opacity-50 dark:text-red-400"
+            className="rounded-sm px-3 py-2 text-button-sm text-error hover:bg-primary-disabled disabled:opacity-50"
           >
             삭제
           </button>
@@ -197,14 +195,14 @@ export default function TodoForm({ todo, onDone, onCancel }: TodoFormProps) {
           <button
             type="button"
             onClick={onCancel}
-            className="rounded px-3 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10"
+            className="rounded-sm px-3 py-2 text-button-sm text-ink hover:bg-surface-soft"
           >
             취소
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="rounded bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+            className="rounded-sm bg-primary px-3 py-2 text-button-sm text-on-primary hover:bg-primary-active disabled:opacity-50"
           >
             {todo ? "수정" : "생성"}
           </button>

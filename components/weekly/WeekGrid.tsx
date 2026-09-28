@@ -66,23 +66,23 @@ export default function WeekGrid({ weeklyPlanId }: WeekGridProps) {
   const unassigned = todos.filter((todo) => todo.dayOfWeek === undefined || todo.dayOfWeek === null);
 
   if (loading) {
-    return <p className="text-sm text-zinc-600 dark:text-zinc-400">불러오는 중...</p>;
+    return <p className="text-body-sm text-muted">불러오는 중...</p>;
   }
 
   return (
     <div className="flex flex-col gap-3">
       {unassigned.length > 0 && (
-        <div className="flex flex-col gap-2 rounded border border-black/10 p-3 dark:border-white/10">
-          <span className="text-sm font-medium">요일 미배정</span>
+        <div className="flex flex-col gap-2 rounded-md border border-hairline bg-surface-soft p-3">
+          <span className="text-caption text-ink">요일 미배정</span>
           {unassigned.map((todo) => (
-            <div key={todo._id} className="flex items-center justify-between gap-2 text-sm">
+            <div key={todo._id} className="flex items-center justify-between gap-2 text-body-sm text-ink">
               <span className="truncate">{todo.title}</span>
               <select
                 value=""
                 onChange={(event) =>
                   assignDay(todo, event.target.value === "" ? undefined : Number(event.target.value))
                 }
-                className="rounded border border-black/10 px-2 py-1 text-xs dark:border-white/10 dark:bg-zinc-800"
+                className="rounded-sm border border-hairline bg-canvas px-2 py-1 text-caption-sm text-ink"
               >
                 <option value="">배정</option>
                 {DAYS.map((day) => (
@@ -102,19 +102,22 @@ export default function WeekGrid({ weeklyPlanId }: WeekGridProps) {
           return (
             <div
               key={day.value}
-              className="flex min-h-24 flex-col gap-2 rounded border border-black/10 p-2 dark:border-white/10"
+              className="flex min-h-24 flex-col gap-2 rounded-md border border-hairline p-2"
             >
-              <span className="text-sm font-semibold">{day.label}</span>
+              <span className="text-title-sm text-ink">{day.label}</span>
               {dayTodos.length === 0 ? (
-                <span className="text-xs text-zinc-400 dark:text-zinc-500">-</span>
+                <span className="text-caption-sm text-muted-soft">-</span>
               ) : (
                 dayTodos.map((todo) => (
-                  <div key={todo._id} className="flex flex-col gap-1 rounded bg-black/5 p-2 text-xs dark:bg-white/10">
+                  <div
+                    key={todo._id}
+                    className="flex flex-col gap-1 rounded-sm bg-surface-soft p-2 text-caption-sm text-ink"
+                  >
                     <span className="truncate">{todo.title}</span>
                     <select
                       value={day.value}
                       onChange={(event) => assignDay(todo, Number(event.target.value))}
-                      className="rounded border border-black/10 px-1 py-0.5 text-xs dark:border-white/10 dark:bg-zinc-800"
+                      className="rounded-sm border border-hairline bg-canvas px-1 py-0.5 text-caption-sm text-ink"
                     >
                       {DAYS.map((option) => (
                         <option key={option.value} value={option.value}>

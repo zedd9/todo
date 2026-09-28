@@ -50,7 +50,7 @@ export default function GoalForm({ goal, onDone }: GoalFormProps) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <label htmlFor="goal-title" className="text-sm font-medium">
+        <label htmlFor="goal-title" className="text-caption text-ink">
           제목
         </label>
         <input
@@ -58,38 +58,38 @@ export default function GoalForm({ goal, onDone }: GoalFormProps) {
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          className="rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
           placeholder="목표 제목"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="goal-description" className="text-sm font-medium">
+        <label htmlFor="goal-description" className="text-caption text-ink">
           설명
         </label>
         <textarea
           id="goal-description"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
-          className="min-h-24 rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="min-h-24 rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
           placeholder="목표 설명 (선택)"
         />
       </div>
 
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && <p className="text-body-sm text-error">{error}</p>}
 
       <div className="flex justify-end gap-2">
         <button
           type="button"
           onClick={onDone}
-          className="rounded px-3 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10"
+          className="rounded-sm px-3 py-2 text-button-sm text-ink hover:bg-surface-soft"
         >
           취소
         </button>
         <button
           type="submit"
           disabled={submitting}
-          className="rounded bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+          className="rounded-sm bg-primary px-3 py-2 text-button-sm text-on-primary hover:bg-primary-active disabled:opacity-50"
         >
           {goal ? "수정" : "생성"}
         </button>

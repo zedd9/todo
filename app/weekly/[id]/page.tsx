@@ -69,11 +69,11 @@ export default function WeeklyPlanDetailPage() {
   };
 
   if (loading) {
-    return <p className="text-sm text-zinc-600 dark:text-zinc-400">불러오는 중...</p>;
+    return <p className="text-body-sm text-muted">불러오는 중...</p>;
   }
 
   if (!plan) {
-    return <p className="text-sm text-zinc-600 dark:text-zinc-400">주간 계획을 찾을 수 없습니다.</p>;
+    return <p className="text-body-sm text-muted">주간 계획을 찾을 수 없습니다.</p>;
   }
 
   const handleDelete = async () => {
@@ -95,14 +95,14 @@ export default function WeeklyPlanDetailPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold">
+        <h1 className="text-display-sm text-ink">
           {new Date(plan.weekStart).toLocaleDateString("ko-KR")} 주 계획
         </h1>
         <div className="flex gap-2">
           <button
             type="button"
             onClick={() => setIsEditOpen(true)}
-            className="rounded px-3 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10"
+            className="rounded-sm px-3 py-2 text-button-sm text-ink hover:bg-surface-soft"
           >
             수정
           </button>
@@ -110,7 +110,7 @@ export default function WeeklyPlanDetailPage() {
             type="button"
             onClick={handleDelete}
             disabled={deleting}
-            className="rounded px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-500/10 disabled:opacity-50 dark:text-red-400"
+            className="rounded-sm px-3 py-2 text-button-sm text-error hover:bg-primary-disabled disabled:opacity-50"
           >
             삭제
           </button>
@@ -120,9 +120,9 @@ export default function WeeklyPlanDetailPage() {
       <ProgressBar percent={progress} label={`주간 목표 진행률 (${doneCount}/${plan.goals.length})`} />
 
       <div className="flex flex-col gap-2">
-        <h2 className="text-sm font-semibold">주간 목표</h2>
+        <h2 className="text-title-sm text-ink">주간 목표</h2>
         {plan.goals.length === 0 ? (
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">등록된 목표가 없습니다.</p>
+          <p className="text-body-sm text-muted">등록된 목표가 없습니다.</p>
         ) : (
           plan.goals.map((goal, index) => (
             <WeeklyGoalItem key={index} goal={goal} index={index} onToggle={handleToggle} />
@@ -131,7 +131,7 @@ export default function WeeklyPlanDetailPage() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="plan-memo" className="text-sm font-semibold">
+        <label htmlFor="plan-memo" className="text-title-sm text-ink">
           메모
         </label>
         <textarea
@@ -139,18 +139,18 @@ export default function WeeklyPlanDetailPage() {
           value={memo}
           onChange={(event) => setMemoDraft(event.target.value)}
           onBlur={handleMemoBlur}
-          className="min-h-24 rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="min-h-24 rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
           placeholder="이번 주 메모"
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <h2 className="text-sm font-semibold">요일별 할일</h2>
+        <h2 className="text-title-sm text-ink">요일별 할일</h2>
         <WeekGrid weeklyPlanId={plan._id} />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="plan-retrospective" className="text-sm font-semibold">
+        <label htmlFor="plan-retrospective" className="text-title-sm text-ink">
           주간 회고
         </label>
         <textarea
@@ -158,7 +158,7 @@ export default function WeeklyPlanDetailPage() {
           value={retrospective}
           onChange={(event) => setRetrospectiveDraft(event.target.value)}
           onBlur={handleRetrospectiveBlur}
-          className="min-h-24 rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="min-h-24 rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
           placeholder="이번 주를 돌아보며..."
         />
       </div>

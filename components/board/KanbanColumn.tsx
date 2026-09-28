@@ -22,11 +22,11 @@ export default function KanbanColumn({ status, title, todos, onCardClick }: Kanb
   return (
     <div
       ref={setNodeRef}
-      className="flex min-h-64 flex-1 flex-col gap-2 rounded-lg border border-black/10 bg-black/5 p-3 dark:border-white/10 dark:bg-white/5"
+      className="flex min-h-64 flex-1 flex-col gap-2 rounded-md border border-hairline bg-surface-soft p-3"
     >
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold">{title}</h2>
-        <span className="text-xs text-zinc-600 dark:text-zinc-400">{sortedTodos.length}</span>
+        <h2 className="text-title-sm text-ink">{title}</h2>
+        <span className="text-caption-sm text-muted">{sortedTodos.length}</span>
       </div>
 
       <SortableContext

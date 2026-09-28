@@ -10,16 +10,14 @@ interface WeeklyGoalItemProps {
 
 export default function WeeklyGoalItem({ goal, index, onToggle }: WeeklyGoalItemProps) {
   return (
-    <label className="flex items-center gap-2 rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10">
+    <label className="flex items-center gap-2 rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink">
       <input
         type="checkbox"
         checked={goal.done}
         onChange={(event) => onToggle(index, event.target.checked)}
-        className="h-4 w-4"
+        className="h-4 w-4 accent-primary"
       />
-      <span className={goal.done ? "text-zinc-400 line-through dark:text-zinc-500" : ""}>
-        {goal.text}
-      </span>
+      <span className={goal.done ? "text-muted-soft line-through" : ""}>{goal.text}</span>
     </label>
   );
 }

@@ -41,20 +41,18 @@ export default function WeeklyPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold">주간 계획</h1>
+        <h1 className="text-display-sm text-ink">주간 계획</h1>
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="rounded bg-foreground px-3 py-2 text-sm font-medium text-background"
+          className="rounded-sm bg-primary px-3 py-2 text-button-sm text-on-primary hover:bg-primary-active"
         >
           새 주간 계획
         </button>
       </div>
 
       {recentPlans.length === 0 ? (
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          아직 등록된 주간 계획이 없습니다.
-        </p>
+        <p className="text-body-sm text-muted">아직 등록된 주간 계획이 없습니다.</p>
       ) : (
         <div className="flex flex-col gap-3">
           {recentPlans.map((plan) => {
@@ -63,20 +61,20 @@ export default function WeeklyPage() {
               <Link
                 key={plan._id}
                 href={`/weekly/${plan._id}`}
-                className="flex items-center justify-between rounded-lg border border-black/10 p-4 hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/10"
+                className="flex items-center justify-between rounded-md border border-hairline p-4 transition-shadow hover:shadow-airbnb"
               >
-                <span className="font-medium">
+                <span className="font-medium text-ink">
                   {new Date(plan.weekStart).toLocaleDateString("ko-KR")} 주
                 </span>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-zinc-600 dark:text-zinc-400">
+                  <span className="text-body-sm text-muted">
                     {doneCount}/{plan.goals.length} 완료
                   </span>
                   <button
                     type="button"
                     onClick={(event) => handleDelete(event, plan._id)}
                     aria-label="삭제"
-                    className="rounded px-2 py-1 text-sm text-red-600 hover:bg-red-500/10 dark:text-red-400"
+                    className="flex h-8 w-8 items-center justify-center rounded-full text-body-sm text-error hover:bg-primary-disabled"
                   >
                     ✕
                   </button>

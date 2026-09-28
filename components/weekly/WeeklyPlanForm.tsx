@@ -92,7 +92,7 @@ export default function WeeklyPlanForm({ plan, weekStart, onDone, onCancel }: We
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <label htmlFor="weekly-week-start" className="text-sm font-medium">
+        <label htmlFor="weekly-week-start" className="text-caption text-ink">
           주간 시작일
         </label>
         <input
@@ -100,29 +100,29 @@ export default function WeeklyPlanForm({ plan, weekStart, onDone, onCancel }: We
           type="date"
           value={weekStartDraft}
           onChange={(event) => setWeekStartDraft(event.target.value)}
-          className="rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
         />
-        <span className="text-xs text-zinc-500 dark:text-zinc-400">
+        <span className="text-caption-sm text-muted">
           선택한 날짜가 속한 주의 월요일부터 시작합니다.
         </span>
       </div>
 
       <div className="flex flex-col gap-2">
-        <span className="text-sm font-medium">주간 목표 (최대 {MAX_GOALS}개)</span>
+        <span className="text-caption text-ink">주간 목표 (최대 {MAX_GOALS}개)</span>
         {goalRows.map((row, index) => (
           <div key={index} className="flex items-center gap-2">
             <input
               type="text"
               value={row.text}
               onChange={(event) => updateGoalText(index, event.target.value)}
-              className="flex-1 rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+              className="flex-1 rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
               placeholder={`목표 ${index + 1}`}
             />
             <button
               type="button"
               onClick={() => removeGoalRow(index)}
               aria-label="삭제"
-              className="rounded px-2 py-1 text-sm hover:bg-black/5 dark:hover:bg-white/10"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-body-sm hover:bg-surface-soft"
             >
               ✕
             </button>
@@ -132,7 +132,7 @@ export default function WeeklyPlanForm({ plan, weekStart, onDone, onCancel }: We
           <button
             type="button"
             onClick={addGoalRow}
-            className="self-start rounded px-2 py-1 text-sm text-zinc-600 hover:bg-black/5 dark:text-zinc-400 dark:hover:bg-white/10"
+            className="self-start rounded-sm px-2 py-1 text-button-sm text-muted hover:bg-surface-soft hover:text-ink"
           >
             + 목표 추가
           </button>
@@ -140,27 +140,27 @@ export default function WeeklyPlanForm({ plan, weekStart, onDone, onCancel }: We
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="weekly-memo" className="text-sm font-medium">
+        <label htmlFor="weekly-memo" className="text-caption text-ink">
           메모
         </label>
         <textarea
           id="weekly-memo"
           value={memo}
           onChange={(event) => setMemo(event.target.value)}
-          className="min-h-20 rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="min-h-20 rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
           placeholder="메모 (선택)"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="weekly-goal" className="text-sm font-medium">
+        <label htmlFor="weekly-goal" className="text-caption text-ink">
           연결된 1년 목표
         </label>
         <select
           id="weekly-goal"
           value={goalId}
           onChange={(event) => setGoalId(event.target.value)}
-          className="rounded border border-black/10 px-3 py-2 text-sm dark:border-white/10 dark:bg-zinc-800"
+          className="rounded-sm border border-hairline px-3 py-2 text-body-sm text-ink focus:border-2 focus:border-ink focus:outline-none"
         >
           <option value="">연결 안 함</option>
           {goals.map((goal) => (
@@ -171,20 +171,20 @@ export default function WeeklyPlanForm({ plan, weekStart, onDone, onCancel }: We
         </select>
       </div>
 
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && <p className="text-body-sm text-error">{error}</p>}
 
       <div className="flex justify-end gap-2">
         <button
           type="button"
           onClick={onCancel}
-          className="rounded px-3 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10"
+          className="rounded-sm px-3 py-2 text-button-sm text-ink hover:bg-surface-soft"
         >
           취소
         </button>
         <button
           type="submit"
           disabled={submitting}
-          className="rounded bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+          className="rounded-sm bg-primary px-3 py-2 text-button-sm text-on-primary hover:bg-primary-active disabled:opacity-50"
         >
           {plan ? "수정" : "생성"}
         </button>

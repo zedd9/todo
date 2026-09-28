@@ -62,8 +62,10 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="h-14 shrink-0 border-b border-black/10 dark:border-white/10 flex items-center justify-between px-4">
-      <h1 className="text-base font-semibold">할일 + 계획 관리</h1>
+    <header className="h-20 shrink-0 border-b border-hairline bg-canvas flex items-center justify-between px-4 sm:px-8">
+      <h1 className="text-nav-link text-primary">
+        할일<span className="text-ink">+계획</span>
+      </h1>
       {checked && (
         <div className="flex items-center gap-3">
           {user ? (
@@ -73,13 +75,13 @@ export default function Header() {
                 <img
                   src={user.avatarUrl}
                   alt={user.username}
-                  className="h-6 w-6 rounded-full"
+                  className="h-8 w-8 rounded-full border border-hairline"
                 />
               )}
-              <span className="text-sm font-medium">{user.username}</span>
+              <span className="text-body-sm font-medium text-ink">{user.username}</span>
               <a
                 href="/auth/logout"
-                className="text-sm font-medium text-black/60 hover:text-black dark:text-white/60 dark:hover:text-white"
+                className="text-body-sm font-medium text-muted hover:text-ink hover:underline"
               >
                 로그아웃
               </a>
@@ -87,7 +89,7 @@ export default function Header() {
           ) : (
             <a
               href="/auth/github"
-              className="text-sm font-medium text-black/60 hover:text-black dark:text-white/60 dark:hover:text-white"
+              className="text-body-sm font-medium text-muted hover:text-ink hover:underline"
             >
               GitHub로 로그인
             </a>

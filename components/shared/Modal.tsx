@@ -27,16 +27,14 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-scrim p-4"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-zinc-900"
+        className="w-full max-w-md rounded-md bg-canvas p-6 shadow-airbnb"
         onClick={(event) => event.stopPropagation()}
       >
-        {title && (
-          <h2 className="mb-4 text-lg font-semibold">{title}</h2>
-        )}
+        {title && <h2 className="mb-4 text-display-sm text-ink">{title}</h2>}
         {children}
       </div>
     </div>

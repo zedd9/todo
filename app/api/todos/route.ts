@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Todo from "@/models/Todo";
+import WeeklyPlan from "@/models/WeeklyPlan";
 import { generateOrderKey } from "@/lib/fractionalIndex";
 import { handleApiError } from "@/lib/apiError";
 import { getSessionUser } from "@/lib/session";
+import { getWeekStart } from "@/lib/utils";
 
 export async function GET(request: NextRequest) {
   try {
@@ -58,6 +60,20 @@ export async function POST(request: NextRequest) {
       order = generateOrderKey(last?.order ?? null, null);
     }
 
+    // If the client didn't pick a weekly plan, link the todo to whichever plan
+    // owns the week of its due date (or this week, when there's no due date),
+    // so it still surfaces on that week's dashboard.
+    let weeklyPlanId = body.weeklyPlanId;
+    if (!weeklyPlanId) {
+      const referenceDate = body.dueDate ? new Date(body.dueDate) : new Date();
+      const weekStart = getWeekStart(referenceDate);
+      const matchingPlan = await WeeklyPlan.findOne({
+        userId: sessionUser._id,
+        weekStart,
+      });
+      weeklyPlanId = matchingPlan?._id;
+    }
+
     const todo = await Todo.create({
       // Always the session user: a client-supplied body.userId is ignored.
       userId: sessionUser._id,
@@ -68,7 +84,7 @@ export async function POST(request: NextRequest) {
       dueDate: body.dueDate,
       dayOfWeek: body.dayOfWeek,
       order,
-      weeklyPlanId: body.weeklyPlanId,
+      weeklyPlanId,
       goalId: body.goalId,
     });
 
